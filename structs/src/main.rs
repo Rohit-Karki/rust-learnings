@@ -1,4 +1,6 @@
-struct User {
+// Structs are similar to OOPS class but they don't have same inheritance property.
+
+struct User {    
     active: bool,
     username: String,
     email: String,
