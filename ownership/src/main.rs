@@ -100,3 +100,45 @@ fn remove_vowels(name: String) -> String {
     }
     output
 }
+
+
+
+
+fn read(y: Bool) {
+    let a = Box::new([0; 1_000_000]);
+    let b = a;
+}
+
+// The boxed array has now been bound to both a and b. By our "almost correct" principle, 
+// Rust would try to free the box's heap memory twice on behalf of both variables. That's undefined behavior too!
+
+// To avoid this situation, we finally arrive at ownership. When a is bound to Box::new([0; 1_000_000]), 
+// we say that a owns the box. The statement let b = a moves ownership of the box from a to b.
+
+// Box deallocation principle (fully correct): If a variable owns a box, when Rust deallocates the variable's 
+// frame, then Rust deallocates the box's heap memory.
+
+// In the example above, b owns the boxed array. 
+// Therefore when the scope ends, Rust deallocates the box only once on behalf of b, not a.
+
+// Collections use Boxes
+
+
+// Moved heap data principle: if a variable x moves ownership of heap data to another variable y,
+// then x cannot be used after the move.
+// So using the {first} after it has moved the ownership of the variable
+
+fn main() {
+    let first = String::from("Ferris");
+    let full = add_suffix(first);
+    println!("{full}, originally {first}"); // first is now used here
+}
+
+fn add_suffix(mut name: String) -> String {
+    name.push_str(" Jr.");
+    name
+}
+
+// first points to deallocated memory after calling add_suffix. 
+// Reading first in println! would therefore be a violation of memory safety (undefined behavior). 
+// Remember: it's not a problem that first points to deallocated memory. It's a problem that we tried to use first after it became invalid.
