@@ -12,7 +12,7 @@ fn main() {
     // rand::thread_rng() gives us a random number generator local to the current thread of execution and seeded by the OS
     // If we leave the type of secret_number unspecfied, it can inferred from its later usage!!
     // (e.g. on comparison with guess later, Rust infers the type of secret number to be u32)
-    let secret_number: u32 = rand::thread_rng().gen_range(1, 101); // gen_range function is defined in the Rng trait
+    let secret_number: u32 = rand::thread_rng().gen_range(1..101); // gen_range function is defined in the Rng trait
     loop {
         println!("Please input your guess.");
         let mut guess = String::new(); // String type is growable and UTF-8 encoded

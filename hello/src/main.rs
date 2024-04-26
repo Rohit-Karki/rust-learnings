@@ -1,4 +1,3 @@
-use aggregator::{Summary, Tweet};
 fn largest<T>(list: &[T]) -> &T {
     let mut largest = &list[0];
 

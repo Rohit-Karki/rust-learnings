@@ -24,16 +24,16 @@ impl Point<f32> {
         (self.x.powi(2) + self.y.powi(2)).sqrt()
     }
 }
-struct Point<X1, Y1> {
+struct Point1<X1, Y1> {
     x: X1,
     y: Y1,
 }
 
 // Here impl<T> is the type of the struct like let p = Point { x: 5, y: 10 };
 // then T is the int32 but when we do p.mixup(p2) then mixup<X2,Y2> X2,Y2 are the type of the parameter
-impl<X1, Y1> Point<X1, Y1> {
-    fn mixup<X2, Y2>(&self, other: Point<X2, Y2>) -> Point<X1, Y2> {
-        Point {
+impl<X1, Y1> Point1<X1, Y1> {
+    fn mixup<X2, Y2>(&self, other: Point1<X2, Y2>) -> Point1<X1, Y2> {
+        Point1 {
             x: self.x,
             y: other.y,
         }
@@ -44,8 +44,8 @@ fn main() {
     let p = Point { x: 5, y: 10 };
     
     println!("p.x = {}", p.x());
-    let p1 = Point { x: 5, y: 10.4 };
-    let p2 = Point { x: "Hello", y: 'c' };
+    let p1 = Point1 { x: 5, y: 10.4 };
+    let p2 = Point1 { x: "Hello", y: 'c' };
 
     let p3 = p1.mixup(p2);
 

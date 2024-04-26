@@ -15,10 +15,11 @@ fn value_in_cents(coin: Coin) -> u8 {
         Coin::Nickel => 5,
         Coin::Dime => 10,
         Coin::Quarter => 25,
+        Coin::Digital => 12,
     }
 }
 
-fn plus_one(x: Option<u8>) -> u8{
+fn plus_one(x: Option<u8>) -> Option<u8>{
     match x{
         None => None,
         Some(x) => Some(x+1)

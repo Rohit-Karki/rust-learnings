@@ -104,7 +104,7 @@ fn remove_vowels(name: String) -> String {
 
 
 
-fn read(y: Bool) {
+fn read(y: bool) {
     let a = Box::new([0; 1_000_000]);
     let b = a;
 }
@@ -128,7 +128,7 @@ fn read(y: Bool) {
 // then x cannot be used after the move.
 // So using the {first} after it has moved the ownership of the variable
 
-fn main() {
+fn main1() {
     let first = String::from("Ferris");
     let full = add_suffix(first);
     println!("{full}, originally {first}"); // first is now used here
@@ -142,3 +142,7 @@ fn add_suffix(mut name: String) -> String {
 // first points to deallocated memory after calling add_suffix. 
 // Reading first in println! would therefore be a violation of memory safety (undefined behavior). 
 // Remember: it's not a problem that first points to deallocated memory. It's a problem that we tried to use first after it became invalid.
+
+
+
+// Reference change permission on path
